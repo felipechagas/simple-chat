@@ -1,18 +1,18 @@
-/* importar as configurações do servidor */
+/* import server config */
 var app = require('./config/server');
 
-/* parametrizar porta de escuta */
-var server = app.listen(80, function(){
-    console.log('Servidor online');
+/* listening port 3000 */
+var server = app.listen(3000, function(){
+    console.log('Server running on port 3000');
 })
 
 var io = require('socket.io').listen(server);
 
-/* Criar a conexão por WebSocket */
+/* creating conection with WebSocket */
 io.on('connection', function(socket){
-    console.log('Usuário conectou');
+    console.log('User Connected!');
 
     socket.on('disconnect', function(){
-        console.log('Usuário desconectou');
+        console.log('User Disconnected!');
     });
 });

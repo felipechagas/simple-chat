@@ -1,37 +1,37 @@
-/* importar o módulo do framework express */
+/* import express framework */
 var express = require('express');
 
-/* importar o módulo do consign */
+/* import consign module */
 var consign = require('consign');
 
-/* importar o módulo do body-parser */
+/* import body-parser module */
 var bodyParser = require('body-parser');
 
-/* importar o módulo do express-validator */
+/* import express-validator module */
 var expressValidator = require('express-validator');
 
-/* iniciar o objeto do express */
+/* inicializing express */
 var app = express();
 
-/* setar as variáveis 'view engine' e 'views' do express */
+/* setting 'view engine' and 'views' express variables */
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
-/* configurar o middleware express.static */
+/* config express.static middleware */
 app.use(express.static('./app/public'));
 
-/* configurar o middleware body-parser */
+/* config body-parser middleware */
 app.use(bodyParser.urlencoded({extended: true}));
 
-/*configurar o middleware express-validator */
+/*config express-validator middleware */
 app.use(expressValidator());
 
-/* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
+/* routes, models and controllers autoload */
 consign()
     .include('app/routes')
     .then('app/models')
     .then('app/controllers')
     .into(app)
 
-/* exportar o objeto app */
+/* export express instance */
 module.exports = app;
