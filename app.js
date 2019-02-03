@@ -27,5 +27,16 @@ io.on('connection', function(socket){
             'msgToClient',
             { apelido: data.apelido, msg: data.msg }
         );
+        
+        if(parseInt(data.apelido_atualizado) == 0) {
+            socket.emit(
+                'usersToClient',
+                { apelido: data.apelido }
+            );
+            socket.broadcast.emit(
+                'usersToClient',
+                { apelido: data.apelido }
+            );
+        }
     }); 
 });
