@@ -13,12 +13,12 @@ module.exports.iniciaChat = function(app, req, res){
     }
 
     app.get('io').emit(
-        'alertNewUser',
+        'msgToClient',
         {
             apelido: formData.apelido,
             msg:     " acabou de entrar!"
         }
     );
 
-    res.render('chat');
+    res.render('chat', { formData : formData });
 }
